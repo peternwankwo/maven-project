@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                /* sh 'maven clean package' */
+                sh 'maven clean package'
 				echo "hahahaha"
             }
 			post {
 				success {
 					echo 'Now archiving...'
-					archiveArtifacts artifacts: '**/target/*.war'
+					/* archiveArtifacts artifacts: '**/target/*.war' */
 				}
 			
 			}
