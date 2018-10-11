@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('Build'){
             steps {
-                 bat 'ipconfig'
+                sh 'mvn clean package'
             }
         }
     }
