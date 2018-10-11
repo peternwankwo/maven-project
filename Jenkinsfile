@@ -3,9 +3,7 @@ pipeline {
     stages{
         stage('Build'){
             steps {
-                echo 'Testing this and that'
-                sh 'maven clean package'
-                echo 'hahahaha'
+                sh 'mvn clean package'
             }
         }
     }
