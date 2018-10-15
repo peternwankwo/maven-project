@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('Build'){
             steps {
-                echo 'this is it'
+                build job: 'package'
             }
 			post {
 				success{
