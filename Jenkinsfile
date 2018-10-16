@@ -27,14 +27,14 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-						bat "winscp -i 'D:/tomcat/tomcat-demo.pem' **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+						bat "scp -i 'D:\tomcat\tomcat-demo.pem' **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                         
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
-                        bat "scp -i 'D:/tomcat/tomcat-demo.pem' **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        bat "scp -i D:\tomcat\tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
