@@ -29,7 +29,7 @@ stages{
                     steps {
 						
 						bat "scp -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/tmp"
-						bat "ssh -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem ec2-user@${params.tomcat_prod} sudo mkdir /var/lib/tomcat7/webapp && sudo mv /tmp/*.war /var/lib/tomcat7/webapp"
+						bat "ssh -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem ec2-user@${params.tomcat_prod} sudo mkdir -p /var/lib/tomcat7/webapp && sudo mv /tmp/*.war /var/lib/tomcat7/webapp"
                         
                     }
                 }
@@ -37,7 +37,7 @@ stages{
                 stage ("Deploy to Production"){
                     steps {
                         bat "scp -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/tmp"
-						bat "ssh -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem ec2-user@${params.tomcat_prod} sudo mkdir /var/lib/tomcat7/webapp && sudo mv /tmp/*.war /var/lib/tomcat7/webapp"
+						bat "ssh -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem ec2-user@${params.tomcat_prod} sudo mkdir -p /var/lib/tomcat7/webapp && sudo mv /tmp/*.war /var/lib/tomcat7/webapp"
                     }
                 }
             }
