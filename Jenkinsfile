@@ -27,17 +27,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-						
 						bat "scp -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/tmp"
-						bat "ssh -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem ec2-user@${params.tomcat_prod} mkdir -p /var/lib/tomcat7/webapp && mv /tmp/*.war /var/lib/tomcat7/webapp"
-                        
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
                         bat "scp -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/tmp"
-						bat "ssh -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem ec2-user@${params.tomcat_prod} mkdir -p /var/lib/tomcat7/webapp && mv /tmp/*.war /var/lib/tomcat7/webapp"
                     }
                 }
             }
