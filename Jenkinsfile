@@ -1,8 +1,8 @@
 pipeline {
     agent any
-	
+		
     parameters {
-         string(name: 'tomcat_dev', defaultValue: '13.59.142.199', description: 'Staging Server')
+         string(name: 'tomcat_dev', defaultValue: 'ec2-13-59-142-199.us-east-2.compute.amazonaws.com', description: 'Staging Server')
          string(name: 'tomcat_prod', defaultValue: 'ec2-18-191-109-243.us-east-2.compute.amazonaws.com', description: 'Production Server')
     }
 
@@ -27,7 +27,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "scp -i 'D:/tomcat/tomcat-demo.pem' **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        bat "scp -i 'D:\tomcat\tomcat-demo.pem' **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
