@@ -37,19 +37,13 @@ stages{
 					}
 				}
 				
-				stage ("SCA: ChekStyle"){
-					steps {
-						build job: 'staticAnalysis'
-					}
-				}
-				
-				stage ("SCA: SonarQube"){
+				stage ("SonarQube"){
 					steps {
 					echo 'Hello, Sonar'
 					}
 				}
 				
-				stage ("SCA: Fortify"){
+				stage ("Fortify"){
 					steps {
 					echo 'Hello, Fortify'
 					}
