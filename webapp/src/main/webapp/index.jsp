@@ -1,1 +1,1 @@
-Hello, World We are in the cloud! With God all things are possible
+Hello, World We are in the cloud!
