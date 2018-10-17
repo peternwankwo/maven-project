@@ -66,9 +66,25 @@ stages{
                 }
  
                 stage ("Deploy to Production"){
-                    steps {
-                        bat "scp -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
-                    }
+                   
+					steps{
+						timeout(time:5, unit:'DAYS'){
+							input message:'Approve PRODUCTION Deployment?'
+						}
+
+						bat "scp -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+					}
+					post {
+						success {
+							echo 'Code deployed to Production.'
+						}
+
+						failure {
+							echo ' Deployment failed.'
+						}
+					}
+					
+					
                 }
             }
         }
