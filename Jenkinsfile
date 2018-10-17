@@ -24,7 +24,7 @@ stages{
         }
         
         stage ('Test'){
-	    parallel{
+	    //parallel{
 			
 				steps {
 				echo 'Hello, Unit test'
@@ -36,7 +36,7 @@ stages{
 				echo 'Hello, Integration Test'
 				}
 			
-	    }
+	   // }
         }
  
         stage ('Deployments'){
