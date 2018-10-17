@@ -25,35 +25,17 @@ stages{
         
         stage ('Test'){
 	    parallel{
-		stage ('Unit test'){
-		    steps {
-			echo 'Hello, Unit test'
-		    }
-		}
+			
+				steps {
+				echo 'Hello, Unit test'
+				}
+			
 
-		stage ("Functional test"){
-		    steps {
-			echo 'Hello, Integration Test'
-		    }
-		}
-		
-		stage ("SCA: ChekStyle"){
-		    steps {
-				build job: 'staticAnalysis'
-		    }
-		}
-		
-		stage ("SCA: SonarQube"){
-		    steps {
-			echo 'Hello, Sonar'
-		    }
-		}
-		
-		stage ("SCA: Fortify"){
-		    steps {
-			echo 'Hello, Fortify'
-		    }
-		}
+			
+				steps {
+				echo 'Hello, Integration Test'
+				}
+			
 	    }
         }
  
