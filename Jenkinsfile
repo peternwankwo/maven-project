@@ -1,13 +1,9 @@
 pipeline {
     agent any
-
-    environment{
-        my_tag = "c:\\temp"
-        //my_tag = my_tag
+	
+	tools {
+        maven 'maven'
     }
-     
-    
-
     stages{
         stage('Build'){
             steps{
