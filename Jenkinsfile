@@ -22,12 +22,46 @@ stages{
                 }
             }
         }
+        
+        stage ('Test'){
+	    parallel{
+		stage ('Unit test'){
+		    steps {
+			echo 'Hello, Unit test'
+		    }
+		}
+
+		stage ("Functional test"){
+		    steps {
+			echo 'Hello, Integration Test'
+		    }
+		}
+		
+		stage ("SCA: ChekStyle"){
+		    steps {
+			echo 'Hello, Checkstyle'
+		    }
+		}
+		
+		stage ("SCA: SonarQube"){
+		    steps {
+			echo 'Hello, Sonar'
+		    }
+		}
+		
+		stage ("SCA: Fortify"){
+		    steps {
+			echo 'Hello, Fortify'
+		    }
+		}
+	    }
+        }
  
         stage ('Deployments'){
             parallel{
                 stage ('Deploy to Stagging'){
                     steps {
-						bat "scp -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+			bat "scp -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
  
