@@ -24,19 +24,37 @@ stages{
         }
         
         stage ('Test'){
-	    //parallel{
-			
-				steps {
-				echo 'Hello, Unit test'
+			parallel{
+				stage ('Unit test'){
+					steps {
+					echo 'Hello, Unit test'
+					}
 				}
-			
 
-			
-				steps {
-				echo 'Hello, Integration Test'
+				stage ("Functional test"){
+					steps {
+					echo 'Hello, Integration Test'
+					}
 				}
-			
-	   // }
+				
+				stage ("SCA: ChekStyle"){
+					steps {
+						build job: 'staticAnalysis'
+					}
+				}
+				
+				stage ("SCA: SonarQube"){
+					steps {
+					echo 'Hello, Sonar'
+					}
+				}
+				
+				stage ("SCA: Fortify"){
+					steps {
+					echo 'Hello, Fortify'
+					}
+				}
+			}
         }
  
         stage ('Deployments'){
@@ -48,6 +66,10 @@ stages{
                 }
  
                 stage ("Deploy to Production"){
+				
+					//to do
+					// add restriction to group that can deploy to Production
+					//Add conditions i.e protractor, unit tests pass
                    
 					steps{
 						bat "scp -v -o StrictHostKeyChecking=no -i D:/tomcat/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
