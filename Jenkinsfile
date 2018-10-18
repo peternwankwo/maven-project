@@ -61,11 +61,10 @@ stages{
  
                 stage ("Deploy to Production"){
 				
-					//to do
+					//to do.....
 					// add restriction to group that can deploy to Production
-					//Add conditions i.e protractor, unit tests pass
-                   
-									
+					//Add conditions i.e protractor, unit tests pass, SonarQube
+			
 					steps{
 						timeout(time:5, unit:'DAYS'){
 							input message:'Approve PRODUCTION Deployment?'
