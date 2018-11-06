@@ -1,6 +1,6 @@
 pipeline {
     agent any
-		
+	
     parameters {
          string(name: 'tomcat_dev', defaultValue: 'ec2-18-220-255-166.us-east-2.compute.amazonaws.com', description: 'Staging Server')
          string(name: 'tomcat_prod', defaultValue: 'ec2-18-218-1-94.us-east-2.compute.amazonaws.com', description: 'Production Server')
@@ -9,6 +9,7 @@ pipeline {
     triggers {
          pollSCM('* * * * *') // Polling Source Control
      }
+	 
  
 stages{
         stage('Build'){
