@@ -1,1 +1,1 @@
-Hello, World We are Local. Version 2
+Hello, World We are in the cloud. Version 2
